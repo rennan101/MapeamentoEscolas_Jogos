@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Escolas Tech - Live</title>
+    <!-- Biblioteca gratuita para ler o CSV do Google Sheets perfeitamente -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; padding: 20px; background-color: #f4f4f9; color: #333; }
+        h1 { color: #0056b3; }
+        .busca-container { margin-bottom: 20px; }
+        input[type="text"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
+        table { width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #0056b3; color: #fff; }
+        .status { margin-bottom: 15px; font-weight: bold; color: #d9534f; }
+    </style>
+</head>
+<body>
+
+    <h1>Mapeamento Escolar: Integração Google Sheets</h1>
+    <p>Os dados abaixo estão sendo puxados em tempo real da sua planilha.</p>
+    
+    <div class="status" id="statusMsg">Carregando dados do Google Sheets...</div>
+
+    <div class="busca-container">
+        <input type="text" id="searchInput" onkeyup="filtrarTabela()" placeholder="Busque por escola, curso ou cidade...">
+    </div>
+
+    <table id="tabelaEscolas">
+        <thead>
+            <tr>
+                <th>Escola</th>
+                <th>Tipo</th>
+                <th>Cidade</th>
+                <th>Cursos / Disciplinas</th>
+                <th>Endereço</th>
+                <th>Contato</th>
+                <th>Responsável</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dados injetados pelo Fetch -->
+        </tbody>
+    </table>
+
+    <script>
+        // COLOQUE AQUI O LINK CSV QUE VOCÊ GEROU NO GOOGLE SHEETS
+        const urlGoogleSheets = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJd4HMTUlncsKLIJYBTaeehA65UPsSUvDonu2R5gH2NnOINrQRj-XnbtOg2Acw-OuFJKvIkGtjNavg/pub?output=csv";
+
+        async function carregarDados() {
+            try {
+                // Fetch busca os dados na internet
+                const resposta = await fetch(urlGoogleSheets);
+                const csvTexto = await resposta.text();
+
+                // PapaParse transforma o texto CSV em um Array do JavaScript
+                Papa.parse(csvTexto, {
+                    header: true, // Avisa que a primeira linha é o cabeçalho
+                    skipEmptyLines: true,
+                    complete: function(resultados) {
+                        montarTabela(resultados.data);
+                        document.getElementById("statusMsg").style.display = "none";
+                    }
+                });
+            } catch (erro) {
+                document.getElementById("statusMsg").innerText = "Erro ao carregar dados. Verifique o link do Google Sheets.";
+                console.error(erro);
+            }
+        }
+
+        function montarTabela(dados) {
+            const tbody = document.querySelector("#tabelaEscolas tbody");
+            tbody.innerHTML = "";
+            
+            dados.forEach(escola => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td><strong>${escola["Escola"] || '-'}</strong></td>
+                    <td>${escola["Tipo"] || '-'}</td>
+                    <td>${escola["Cidade"] || '-'}</td>
+                    <td>${escola["Cursos"] || escola["Cursos / Disciplinas"] || '-'}</td>
+                    <td>${escola["Endereço"] || '-'}</td>
+                    <td>${escola["Contato"] || '-'}</td>
+                    <td>${escola["Responsável"] || '-'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filtrarTabela() {
+            const input = document.getElementById("searchInput").value.toUpperCase();
+            const trs = document.querySelectorAll("#tabelaEscolas tbody tr");
+            trs.forEach(tr => {
+                tr.style.display = tr.innerText.toUpperCase().includes(input) ? "" : "none";
+            });
+        }
+
+        window.onload = carregarDados;
+    </script>
+</body>
+</html>
