@@ -28,10 +28,10 @@ jobs:
         with:
           python-version: '3.10'
 
-      # 3. Instala as dependências
+# 3. Instala as dependências
       - name: Instalar dependências
         run: |
-          pip install requests beautifulsoup4 pandas
+          pip install requests beautifulsoup4 pandas duckduckgo-search
 
       # 4. Roda o código Web Scraping
       - name: Executar o Web Scraping
