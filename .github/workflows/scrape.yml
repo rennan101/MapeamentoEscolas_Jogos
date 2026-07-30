@@ -9,31 +9,35 @@ on:
   # Este comando cria um botão no GitHub para você rodar manualmente quando quiser
   workflow_dispatch: 
 
+# IMPORTANTE: Dá permissão para o robô poder salvar o novo CSV dentro do repositório
+permissions:
+  contents: write
+
 jobs:
   executar-robo:
     runs-on: ubuntu-latest # O GitHub empresta um computador com Linux (grátis) para rodar
 
     steps:
-      # 1. Puxa os arquivos do seu repositório para o computador do GitHub
+      # 1. Puxa os arquivos (Atualizado para v4 para sumir o aviso amarelo)
       - name: Acessar arquivos do repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # 2. Instala o Python
+      # 2. Instala o Python (Atualizado para v5)
       - name: Configurar Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      # 3. Instala as mesmas bibliotecas que você instalou no seu Mac
+      # 3. Instala as dependências
       - name: Instalar dependências
         run: |
           pip install requests beautifulsoup4 pandas
 
-      # 4. Roda o seu código Python (Certifique-se de que o nome do seu arquivo Python seja 'scraper.py')
+      # 4. Roda o código Web Scraping
       - name: Executar o Web Scraping
         run: python scraper.py
 
-      # 5. (Opcional) Se o robô gerar um arquivo CSV localmente, este passo salva o novo arquivo de volta no seu GitHub
+      # 5. Salva os resultados no repositório
       - name: Salvar resultados no repositório
         run: |
           git config --global user.name 'Robo Web Scraper'
