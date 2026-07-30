@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Escolas Tech - Live</title>
-    <!-- Biblioteca gratuita para ler o CSV do Google Sheets perfeitamente -->
+    <title>Dashboard Escolas Tech - Scraper Automático</title>
+    <!-- Biblioteca gratuita para ler o CSV perfeitamente -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, sans-serif; padding: 20px; background-color: #f4f4f9; color: #333; }
-        h1 { color: #0056b3; }
+        h1 { color: #0056b3; margin-bottom: 5px;}
+        p { color: #555; margin-bottom: 20px; }
         .busca-container { margin-bottom: 20px; }
         input[type="text"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
         table { width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         th, td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; }
         th { background-color: #0056b3; color: #fff; }
-        .status { margin-bottom: 15px; font-weight: bold; color: #d9534f; }
+        tr:hover { background-color: #f1f6fc; }
+        .status { margin-bottom: 15px; font-weight: bold; color: #d9534f; padding: 10px; border-radius: 5px; background-color: #fdf2f2; border: 1px solid #d9534f; display: inline-block;}
     </style>
 </head>
 <body>
 
-    <h1>Mapeamento Escolar: Integração Google Sheets</h1>
-    <p>Os dados abaixo estão sendo puxados em tempo real da sua planilha.</p>
+    <h1>Mapeamento Escolar: 100% Automatizado</h1>
+    <p>Os dados abaixo são atualizados diariamente através do nosso robô de varredura web (Web Scraper).</p>
     
-    <div class="status" id="statusMsg">Carregando dados do Google Sheets...</div>
+    <div class="status" id="statusMsg">Buscando os dados mais recentes do robô...</div>
 
     <div class="busca-container">
         <input type="text" id="searchInput" onkeyup="filtrarTabela()" placeholder="Busque por escola, curso ou cidade...">
@@ -46,13 +48,19 @@
     </table>
 
     <script>
-        // COLOQUE AQUI O LINK CSV QUE VOCÊ GEROU NO GOOGLE SHEETS
-        const urlGoogleSheets = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSJd4HMTUlncsKLIJYBTaeehA65UPsSUvDonu2R5gH2NnOINrQRj-XnbtOg2Acw-OuFJKvIkGtjNavg/pub?output=csv";
+        // AGORA O SITE LÊ DIRETAMENTE O ARQUIVO GERADO PELO SEU ROBÔ NO GITHUB
+        const urlArquivoCSV = "novas_escolas_encontradas.csv";
 
         async function carregarDados() {
             try {
-                // Fetch busca os dados na internet
-                const resposta = await fetch(urlGoogleSheets);
+                // Tenta buscar o arquivo CSV local
+                const resposta = await fetch(urlArquivoCSV);
+                
+                // Verifica se o arquivo existe (se o robô rodou com sucesso)
+                if (!resposta.ok) {
+                    throw new Error("O arquivo CSV ainda não existe.");
+                }
+
                 const csvTexto = await resposta.text();
 
                 // PapaParse transforma o texto CSV em um Array do JavaScript
@@ -61,11 +69,13 @@
                     skipEmptyLines: true,
                     complete: function(resultados) {
                         montarTabela(resultados.data);
+                        // Esconde a mensagem de status se deu tudo certo
                         document.getElementById("statusMsg").style.display = "none";
                     }
                 });
             } catch (erro) {
-                document.getElementById("statusMsg").innerText = "Erro ao carregar dados. Verifique o link do Google Sheets.";
+                // Se der erro, avisa que está esperando o robô trabalhar
+                document.getElementById("statusMsg").innerText = "Aguardando o robô concluir a varredura para exibir os dados. (Arquivo CSV não encontrado).";
                 console.error(erro);
             }
         }
