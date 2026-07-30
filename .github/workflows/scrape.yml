@@ -1,0 +1,43 @@
+name: Robô de Mapeamento Escolar (Scraper)
+
+# Define QUANDO o robô vai rodar
+on:
+  schedule:
+    # Roda automaticamente todos os dias às 08:00 UTC (05:00 horário de Brasília)
+    - cron: '0 8 * * *'
+  
+  # Este comando cria um botão no GitHub para você rodar manualmente quando quiser
+  workflow_dispatch: 
+
+jobs:
+  executar-robo:
+    runs-on: ubuntu-latest # O GitHub empresta um computador com Linux (grátis) para rodar
+
+    steps:
+      # 1. Puxa os arquivos do seu repositório para o computador do GitHub
+      - name: Acessar arquivos do repositório
+        uses: actions/checkout@v3
+
+      # 2. Instala o Python
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # 3. Instala as mesmas bibliotecas que você instalou no seu Mac
+      - name: Instalar dependências
+        run: |
+          pip install requests beautifulsoup4 pandas
+
+      # 4. Roda o seu código Python (Certifique-se de que o nome do seu arquivo Python seja 'scraper.py')
+      - name: Executar o Web Scraping
+        run: python scraper.py
+
+      # 5. (Opcional) Se o robô gerar um arquivo CSV localmente, este passo salva o novo arquivo de volta no seu GitHub
+      - name: Salvar resultados no repositório
+        run: |
+          git config --global user.name 'Robo Web Scraper'
+          git config --global user.email 'acoes@github.com'
+          git add -A
+          git diff-index --quiet HEAD || git commit -m "Atualizando dados das escolas"
+          git push
