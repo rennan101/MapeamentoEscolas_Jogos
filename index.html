@@ -159,7 +159,7 @@
 </head>
 <body>
 
-    <h1>Dashboard Analítico - Escolas Tech RMR</h1>
+    <h1>Mapeamento Escolar: Animação 2D, Modelagem 3D, Jogos e Tech</h1>
     <p>Painel gerencial de monitoramento de instituições de ensino na Região Metropolitana do Recife.</p>
     
     <!-- Botão para Mostrar/Ocultar Gráficos -->
@@ -229,10 +229,10 @@
 
     <script>
         const escolas = [
-            { escola: "ETE Cícero Dias (NAVE)", tipo: "Médio-Técnico (ETE)", cidade: "Recife", cursos: "Animação 2D, Modelagem 3D, Jogos Digitais, Programação, Multimídia", status: "Referência", telefone: "(81) 3181-3020", instagram: "@nave.recife", link: "https://oifuturo.org.br/programas/nave/" },
-            { escola: "ETE Porto Digital", tipo: "Médio-Técnico (ETE)", cidade: "Recife", cursos: "Desenvolvimento de Sistemas, Jogos Digitais, Computação Gráfica", status: "Referência", telefone: "(81) 3181-4868", instagram: "@eteportodigital", link: "https://www.portodigital.org/" },
-            { escola: "Liceu de Artes e Ofícios de Pernambuco", tipo: "Médio-Técnico (ETE)", cidade: "Recife", cursos: "Computação Gráfica, Animação 2D/3D, Design, Edição Audiovisual", status: "Referência", telefone: "(81) 3181-2705", instagram: "@liceudearteseoficiospe", link: "" },
-            { escola: "ETE Dom Bosco", tipo: "Médio-Técnico (ETE)", cidade: "Recife", cursos: "Design Gráfico, Edição de Vídeo, Modelagem 3D Básica", status: "Não Referência", telefone: "(81) 3181-2700", instagram: "@etedom.bosco", link: "" },
+            { escola: "ETE Cícero Dias (NAVE)", tipo: "Médio-Técnico (ETE)", cidade: "Recife", cursos: "Animação 2D, Modelagem 3D, Jogos Digitais, Programação, Multimídia", status: "Referência", telefone: "(81) 3181-3020", instagram: "@etecicerodias", link: "" },
+            { escola: "ETE Porto Digital", tipo: "Médio-Técnico (ETE)", cidade: "Recife", cursos: "Desenvolvimento de Sistemas, Jogos Digitais, Computação Gráfica", status: "Referência", telefone: "(81) 3181-4868", instagram: "", link: "https://www.facebook.com/eteportodigital/" },
+            { escola: "Liceu de Artes e Ofícios de Pernambuco", tipo: "Médio-Técnico (ETE)", cidade: "Recife", cursos: "Computação Gráfica, Animação 2D/3D, Design, Edição Audiovisual", status: "Referência", telefone: "(81) 3181-2705", instagram: "", link: "https://www.facebook.com/profile.php?id=100068504342544" },
+            { escola: "ETE Dom Bosco", tipo: "Médio-Técnico (ETE)", cidade: "Recife", cursos: "Design Gráfico, Edição de Vídeo, Modelagem 3D Básica", status: "Não Referência", telefone: "(81) 3181-2700", instagram: "", link: "" },
             { escola: "ETEPAM (Prof. Agamenon Magalhães)", tipo: "Médio-Técnico (ETE)", cidade: "Recife", cursos: "Desenvolvimento de Sistemas, Mecatrônica (Robótica)", status: "Referência", telefone: "(81) 3181-3951", instagram: "@etepamoficial", link: "" },
             { escola: "ETE Ginásio Pernambucano", tipo: "Médio-Técnico (ETE)", cidade: "Recife", cursos: "Desenvolvimento de Sistemas, Multimídia, Audiovisual", status: "Referência", telefone: "(81) 3181-2741", instagram: "@eteginasiopernambucano", link: "" },
             { escola: "ETE Prof. Lucilo Ávila Pessoa", tipo: "Médio-Técnico (ETE)", cidade: "Recife", cursos: "Redes de Computadores", status: "Não Referência", telefone: "(81) 3181-3958", instagram: "@eteluciloavila", link: "" },
@@ -249,12 +249,12 @@
             { escola: "EREM Olinda", tipo: "Ensino Médio (EREM)", cidade: "Olinda", cursos: "Cultura Maker, Projetos Integradores em Tech", status: "Não Referência", telefone: "(81) 3181-2850", instagram: "@erem.olinda", link: "" },
             { escola: "EREM Frei Jaboatão", tipo: "Ensino Médio (EREM)", cidade: "Jaboatão dos Guararapes", cursos: "Iniciação à Programação, Tecnologias Digitais", status: "Não Referência", telefone: "(81) 3181-3310", instagram: "@eremfreijaboatao", link: "" },
             { escola: "EREM Padre Luís Vera", tipo: "Ensino Médio (EREM)", cidade: "Cabo de Santo Agostinho", cursos: "Cultura Maker, Tecnologias Digitais, Audiovisual", status: "Não Referência", telefone: "(81) 3181-3520", instagram: "@erempadreluisvera", link: "" },
-            { escola: "EREM Professorº José Maria de Vaz", tipo: "Ensino Médio (EREM)", cidade: "Jaboatão dos Guararapes", cursos: "Iniciação Tecnológica Básica, Ferramentas Digitais", status: "Não Referência", telefone: "(81) 3181-3340", instagram: "@eremjosemaria", link: "" },
-            { escola: "EREM Conde da Boa Vista", tipo: "Ensino Médio (EREM)", cidade: "Jaboatão dos Guararapes", cursos: "Projetos de Extensão em Informática e Multimídia", status: "Não Referência", telefone: "(81) 3181-3355", instagram: "@eremcondeboavista", link: "" },
-            { escola: "EREM Doutor Sebastião Alves", tipo: "Ensino Médio (EREM)", cidade: "Cabo de Santo Agostinho", cursos: "Noções de Informática e Robótica Escolar", status: "Não Referência", telefone: "(81) 3181-3560", instagram: "@eremsebastiaoalves", link: "" },
+            { escola: "EREM Professorº José Maria de Vaz", tipo: "Ensino Médio (EREM)", cidade: "Jaboatão dos Guararapes", cursos: "Iniciação Tecnológica Básica, Ferramentas Digitais", status: "Não Referência", telefone: "(81) 3181-3340", instagram: "", link: "" },
+            { escola: "EREM Conde da Boa Vista", tipo: "Ensino Médio (EREM)", cidade: "Jaboatão dos Guararapes", cursos: "Projetos de Extensão em Informática e Multimídia", status: "Não Referência", telefone: "(81) 3181-3355", instagram: "", link: "" },
+            { escola: "EREM Doutor Sebastião Alves", tipo: "Ensino Médio (EREM)", cidade: "Cabo de Santo Agostinho", cursos: "Noções de Informática e Robótica Escolar", status: "Não Referência", telefone: "(81) 3181-3560", instagram: "", link: "" },
             { escola: "Escola Mun. Dr. Rodolfo Aureliano", tipo: "Ensino Médio (Municipal)", cidade: "Recife", cursos: "Robótica (Clube de Robótica)", status: "Não Referência", telefone: "(81) 3355-6677", instagram: "@emti.rodolfoaureliano", link: "" },
             { escola: "NEAC (Núcleo de Estudos Avançados e Científicos)", tipo: "Ensino Médio (Municipal)", cidade: "Cabo de Santo Agostinho", cursos: "Robótica, Programação de Jogos em Scratch, Cultura Maker", status: "Referência", telefone: "(81) 3521-6500", instagram: "@pref_cabo", link: "https://www.cabo.pe.gov.br/" },
-            { escola: "Escola Municipal Vereador Pedro Afonso (CABO.TEC)", tipo: "Ensino Médio (Municipal)", cidade: "Cabo de Santo Agostinho", cursos: "Educação Digital, Leitura Crítica de Mídias", status: "Não Referência", telefone: "(81) 3521-6510", instagram: "@pref_cabo", link: "" },
+            { escola: "Escola Municipal Vereador Pedro Afonso (CABO.TEC)", tipo: "Ensino Médio (Municipal)", cidade: "Cabo de Santo Agostinho", cursos: "Educação Digital, Leitura Crítica de Mídias", status: "Não Referência", telefone: "(81) 3521-6510", instagram: "@pref_cabo", link: "https://www.cabo.pe.gov.br/" },
             { escola: "Colégio Motivo", tipo: "Ensino Médio (Privada)", cidade: "Recife", cursos: "Robótica Educacional, Cultura Maker, Noções de Design", status: "Referência", telefone: "(81) 2119-9300", instagram: "@colegiomotivo", link: "https://www.colegiomotivo.com.br/" },
             { escola: "Colégio Damas", tipo: "Ensino Médio (Privada)", cidade: "Recife", cursos: "Robótica, Inovação, Espaço Maker, Edição Criativa", status: "Referência", telefone: "(81) 3426-5026", instagram: "@colegiodamas", link: "https://www.colegiodamas.com.br/" },
             { escola: "Colégio Santa Maria", tipo: "Ensino Médio (Privada)", cidade: "Recife", cursos: "Robótica, Iniciação à Programação, Edição Gráfica", status: "Referência", telefone: "(81) 3326-1414", instagram: "@colegiosantamaria", link: "https://www.santamaria.g12.br/" },
@@ -264,9 +264,9 @@
             { escola: "Colégio São Bento", tipo: "Ensino Médio (Privada)", cidade: "Olinda", cursos: "Robótica Educacional", status: "Não Referência", telefone: "(81) 3316-3288", instagram: "@colegiosaobentoolinda", link: "https://www.saobento.org.br/" },
             { escola: "Colégio GGE Piedade", tipo: "Ensino Médio (Privada)", cidade: "Jaboatão dos Guararapes", cursos: "Robótica Educacional, Cultura Maker, Programação", status: "Referência", telefone: "(81) 3465-3000", instagram: "@colegiogge", link: "https://gge.com.br/" },
             { escola: "Colégio Souza Leão (Piedade)", tipo: "Ensino Médio (Privada)", cidade: "Jaboatão dos Guararapes", cursos: "Robótica, Tecnologias Aplicadas, Design", status: "Não Referência", telefone: "(81) 3469-1234", instagram: "@colegiosouzaleao", link: "" },
-            { escola: "Colégio Santa Sofia", tipo: "Ensino Médio (Privada)", cidade: "Cabo de Santo Agostinho", cursos: "Robótica Educacional, Informática", status: "Não Referência", telefone: "(81) 3521-1122", instagram: "@colegiosantasofia", link: "" },
-            { escola: "Colégio Nossa Senhora da Boa Viagem (Unidade Jaboatão)", tipo: "Ensino Médio (Privada)", cidade: "Jaboatão dos Guararapes", cursos: "Noções Básicas de Informática e Multimídia", status: "Não Referência", telefone: "(81) 3462-8800", instagram: "@colegio_nvb", link: "" },
-            { escola: "Colégio Dimensão (Cabo)", tipo: "Ensino Médio (Privada)", cidade: "Cabo de Santo Agostinho", cursos: "Informática Educativa e Projetos Digitais", status: "Não Referência", telefone: "(81) 3521-2300", instagram: "@colegiodimensaocabo", link: "" }
+            { escola: "Colégio Santa Sofia", tipo: "Ensino Médio (Privada)", cidade: "Cabo de Santo Agostinho", cursos: "Robótica Educacional, Informática", status: "Não Referência", telefone: "(81) 3521-1122", instagram: "", link: "" },
+            { escola: "Colégio Nossa Senhora da Boa Viagem (Unidade Jaboatão)", tipo: "Ensino Médio (Privada)", cidade: "Jaboatão dos Guararapes", cursos: "Noções Básicas de Informática e Multimídia", status: "Não Referência", telefone: "(81) 3462-8800", instagram: "", link: "" },
+            { escola: "Colégio Dimensão (Cabo)", tipo: "Ensino Médio (Privada)", cidade: "Cabo de Santo Agostinho", cursos: "Informática Educativa e Projetos Digitais", status: "Não Referência", telefone: "(81) 3521-2300", instagram: "", link: "" }
         ];
 
         let sortColumn = '';
@@ -306,7 +306,7 @@
         }
 
         function gerarLinks(telefone, instagram, link) {
-            let html = telefone ? `<span>📞 ${telefone}</span>` : '<span>-</span>';
+            let html = telefone ? `<span>📞 ${telefone}</span><br>` : '';
             if (instagram) {
                 const igUser = instagram.replace('@', '');
                 html += `<a href="https://instagram.com/${igUser}" target="_blank" class="link-social">📱 ${instagram}</a>`;
@@ -314,7 +314,7 @@
             if (link) {
                 html += `<a href="${link}" target="_blank" class="link-site">🌐 Site Oficial</a>`;
             }
-            return html;
+            return html || '-';
         }
 
         function ordenarTabela(coluna) {
